@@ -1,5 +1,5 @@
 /* ==========================================================================
-   ROASTERY STORY - HEAVY PREMIUM CSS
+   ROASTERY STORY - HEAVY PREMIUM CSS WITH 3D EFFECTS
    ========================================================================== */
 
 .roastery {
@@ -9,6 +9,7 @@
   color: var(--color-text-primary);
   overflow: hidden;
   z-index: 1;
+  perspective: 1200px;
 }
 
 /* Background Effects */
@@ -21,27 +22,32 @@
   transform: translate(-50%, -50%);
   background: radial-gradient(
     circle,
-    rgba(139, 154, 70, 0.08) 0%,
-    rgba(201, 169, 110, 0.04) 40%,
+    var(--color-section-glow) 0%,
     transparent 70%
   );
   filter: blur(60px);
   pointer-events: none;
   z-index: -1;
   animation: breathe 12s ease-in-out infinite alternate;
+  will-change: opacity, transform;
+}
+
+@keyframes breathe {
+  0% { transform: translate(-50%, -50%) scale(1); opacity: 0.6; }
+  100% { transform: translate(-50%, -50%) scale(1.1); opacity: 1; }
 }
 
 .roastery__bg-particles {
   position: absolute;
   inset: 0;
   background-image: 
-    radial-gradient(1px 1px at 25px 35px, rgba(201, 169, 110, 0.25), transparent),
-    radial-gradient(1.5px 1.5px at 150px 220px, rgba(139, 154, 70, 0.3), transparent),
-    radial-gradient(1px 1px at 300px 80px, rgba(255, 255, 255, 0.15), transparent);
+    radial-gradient(1px 1px at 25px 35px, var(--color-gold) 0%, transparent),
+    radial-gradient(1.5px 1.5px at 150px 220px, var(--color-olive) 0%, transparent),
+    radial-gradient(1px 1px at 300px 80px, var(--color-text-muted) 0%, transparent);
   background-size: 350px 350px;
   pointer-events: none;
   z-index: -1;
-  opacity: 0.7;
+  opacity: 0.3;
 }
 
 /* Header */
@@ -66,9 +72,9 @@
   letter-spacing: 2.5px;
   text-transform: uppercase;
   color: var(--color-gold-light);
-  background: rgba(201, 169, 110, 0.1);
-  border: 1px solid rgba(201, 169, 110, 0.25);
-  box-shadow: 0 0 20px rgba(201, 169, 110, 0.12);
+  background: var(--color-glass-bg);
+  border: 1px solid var(--color-glass-border);
+  box-shadow: 0 0 20px var(--color-shadow);
 }
 
 .roastery__title {
@@ -79,14 +85,13 @@
   margin: 0;
   background: linear-gradient(
     135deg,
-    var(--color-cream),
-    var(--color-gold-light),
-    var(--color-cream-dark)
+    var(--color-text-primary),
+    var(--color-gold-light)
   );
   -webkit-background-clip: text;
   background-clip: text;
   color: transparent;
-  text-shadow: 0 4px 30px rgba(0, 0, 0, 0.5);
+  text-shadow: 0 4px 30px var(--color-shadow);
 }
 
 .roastery__subtitle {
@@ -104,6 +109,7 @@
   gap: 16px;
   margin-bottom: 36px;
   flex-wrap: wrap;
+  perspective: 800px;
 }
 
 .roastery__tab {
@@ -112,40 +118,46 @@
   gap: 10px;
   padding: 14px 28px;
   border-radius: var(--radius-full);
-  background: rgba(255, 255, 255, 0.025);
-  border: 1px solid rgba(255, 255, 255, 0.07);
+  background: var(--color-glass-bg);
+  border: 1px solid var(--color-glass-border);
   color: var(--color-text-secondary);
   font-family: var(--font-accent);
   font-size: 0.9rem;
   font-weight: 500;
   letter-spacing: 0.5px;
   cursor: pointer;
-  transition: all var(--transition-medium);
+  transition: transform var(--transition-medium), background var(--transition-medium), color var(--transition-medium), box-shadow var(--transition-medium);
   backdrop-filter: blur(12px);
+  transform-style: preserve-3d;
+  will-change: transform;
 }
 
 .roastery__tab-dot {
   width: 8px;
   height: 8px;
   border-radius: 50%;
-  background: rgba(255, 255, 255, 0.2);
+  background: var(--color-glass-border);
   transition: all var(--transition-fast);
 }
 
 .roastery__tab:hover {
-  background: rgba(255, 255, 255, 0.06);
-  border-color: rgba(201, 169, 110, 0.3);
-  color: var(--color-cream);
-  transform: translateY(-2px);
+  background: var(--color-glass-bg-hover);
+  border-color: var(--color-gold);
+  color: var(--color-text-primary);
+  transform: translateY(-2px) translateZ(10px);
+  box-shadow: 0 10px 20px var(--color-shadow);
 }
 
 .roastery__tab--active {
-  background: linear-gradient(135deg, rgba(139, 154, 70, 0.2), rgba(201, 169, 110, 0.15));
-  border-color: rgba(201, 169, 110, 0.5);
+  background: var(--color-glass-bg-hover);
+  border-color: var(--color-gold);
   color: var(--color-gold-light);
-  box-shadow: 
-    0 8px 24px -6px rgba(0, 0, 0, 0.4),
-    0 0 15px rgba(201, 169, 110, 0.2);
+  transform: translateZ(-5px) scale(0.97);
+  box-shadow: inset 0 4px 15px var(--color-shadow-strong);
+}
+
+.roastery__tab--active:hover {
+  transform: translateZ(-5px) scale(0.97);
 }
 
 .roastery__tab--active .roastery__tab-dot {
@@ -154,18 +166,31 @@
 }
 
 /* Card Showcase */
+.roastery__explorer {
+  transform-style: preserve-3d;
+}
+
 .roastery__card {
   border-radius: var(--radius-xl);
   padding: 48px;
-  background: rgba(15, 15, 15, 0.65);
+  background: var(--color-glass-bg);
   backdrop-filter: blur(30px) saturate(160%);
   -webkit-backdrop-filter: blur(30px) saturate(160%);
-  border: 1px solid rgba(255, 255, 255, 0.08);
+  border: 1px solid var(--color-glass-border);
   box-shadow: 
-    0 24px 48px -12px rgba(0, 0, 0, 0.6),
-    inset 0 1px 0 0 rgba(255, 255, 255, 0.1);
-  transition: all var(--transition-medium);
+    0 24px 48px -12px var(--color-shadow-strong),
+    inset 0 1px 0 0 var(--color-glass-inset);
+  transition: transform 0.6s var(--ease-out-expo), box-shadow 0.6s var(--ease-out-expo);
   margin-bottom: 100px;
+  transform-style: preserve-3d;
+  will-change: transform;
+}
+
+.roastery__card:hover {
+  transform: rotateX(1deg) rotateY(-1deg) translateZ(10px);
+  box-shadow: 
+    -10px 30px 60px -10px var(--color-shadow-strong),
+    inset 0 1px 0 0 var(--color-glass-inset);
 }
 
 .roastery__card-grid {
@@ -173,6 +198,7 @@
   grid-template-columns: 1.2fr 0.8fr;
   gap: 60px;
   align-items: center;
+  transform-style: preserve-3d;
 }
 
 /* Left Info Column */
@@ -180,6 +206,7 @@
   display: flex;
   flex-direction: column;
   gap: 20px;
+  transform: translateZ(20px);
 }
 
 .roastery__origin-tag {
@@ -198,7 +225,7 @@
   font-family: var(--font-display);
   font-size: 2.4rem;
   font-weight: 400;
-  color: var(--color-cream);
+  color: var(--color-text-primary);
   margin: 0;
   line-height: 1.2;
 }
@@ -248,19 +275,19 @@
 .roastery__chip {
   padding: 6px 16px;
   border-radius: var(--radius-full);
-  background: rgba(139, 154, 70, 0.12);
-  border: 1px solid rgba(139, 154, 70, 0.25);
-  color: var(--color-cream);
+  background: var(--color-glass-bg);
+  border: 1px solid var(--color-glass-border);
+  color: var(--color-text-primary);
   font-family: var(--font-accent);
   font-size: 0.85rem;
   font-weight: 500;
-  transition: all var(--transition-fast);
+  transition: transform var(--transition-fast), background var(--transition-fast), border-color var(--transition-fast);
 }
 
 .roastery__chip:hover {
-  background: rgba(201, 169, 110, 0.2);
-  border-color: rgba(201, 169, 110, 0.4);
-  transform: translateY(-2px);
+  background: var(--color-glass-bg-hover);
+  border-color: var(--color-gold);
+  transform: translateY(-2px) translateZ(5px);
 }
 
 /* Specs & Taste Meters */
@@ -268,10 +295,12 @@
   display: flex;
   flex-direction: column;
   gap: 20px;
-  background: rgba(0, 0, 0, 0.3);
+  background: var(--color-bg-tertiary);
   padding: 32px;
   border-radius: var(--radius-lg);
-  border: 1px solid rgba(255, 255, 255, 0.05);
+  border: 1px solid var(--color-glass-border);
+  transform: translateZ(30px);
+  box-shadow: 0 10px 30px var(--color-shadow);
 }
 
 .roastery__spec-badge {
@@ -279,7 +308,7 @@
   justify-content: space-between;
   align-items: center;
   padding-bottom: 14px;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+  border-bottom: 1px solid var(--color-glass-border);
 }
 
 .roastery__spec-label {
@@ -293,7 +322,8 @@
 .roastery__spec-value {
   font-family: var(--font-display);
   font-size: 1.1rem;
-  color: var(--color-gold-bright);
+  color: var(--color-gold);
+  font-weight: 500;
 }
 
 /* Taste Meters */
@@ -339,23 +369,29 @@
 .roastery__meter-track {
   height: 6px;
   border-radius: var(--radius-full);
-  background: rgba(255, 255, 255, 0.08);
+  background: var(--color-glass-bg);
   overflow: hidden;
+  box-shadow: inset 0 2px 4px var(--color-shadow-strong);
 }
 
 .roastery__meter-fill {
   height: 100%;
   border-radius: var(--radius-full);
   background: linear-gradient(90deg, var(--color-olive), var(--color-gold));
-  transition: width 0.8s cubic-bezier(0.16, 1, 0.3, 1);
-  box-shadow: 0 0 10px rgba(201, 169, 110, 0.5);
+  transition: width 0.8s var(--ease-out-expo);
+  box-shadow: 0 0 10px var(--color-gold);
 }
 
 /* Process Steps Grid */
+.roastery__process {
+  perspective: 1200px;
+}
+
 .roastery__steps-grid {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   gap: 24px;
+  transform-style: preserve-3d;
 }
 
 .roastery__step-card {
@@ -365,16 +401,18 @@
   background: var(--color-glass-bg);
   backdrop-filter: blur(20px);
   border: 1px solid var(--color-glass-border);
-  transition: all var(--transition-medium);
+  transition: transform var(--transition-medium), box-shadow var(--transition-medium), border-color var(--transition-medium), background var(--transition-medium);
   overflow: hidden;
+  will-change: transform;
+  transform-style: preserve-3d;
 }
 
 .roastery__step-card:hover {
-  transform: translateY(-8px);
+  transform: translateY(-8px) translateZ(20px) rotateX(2deg);
   background: var(--color-glass-bg-hover);
-  border-color: rgba(201, 169, 110, 0.3);
+  border-color: var(--color-gold);
   box-shadow: 
-    0 16px 36px -10px rgba(0, 0, 0, 0.5),
+    0 20px 40px var(--color-shadow-strong),
     0 0 20px rgba(139, 154, 70, 0.15);
 }
 
@@ -382,21 +420,23 @@
   font-family: var(--font-display);
   font-size: 2.8rem;
   font-weight: 700;
-  color: var(--color-text-dim);
+  color: var(--color-text-muted);
   line-height: 1;
   margin-bottom: 16px;
   transition: color var(--transition-medium);
+  transform: translateZ(10px);
 }
 
 .roastery__step-card:hover .roastery__step-number {
-  color: rgba(201, 169, 110, 0.3);
+  color: var(--color-gold);
 }
 
 .roastery__step-title {
   font-family: var(--font-display);
   font-size: 1.35rem;
-  color: var(--color-cream);
+  color: var(--color-text-primary);
   margin: 0 0 6px;
+  transform: translateZ(10px);
 }
 
 .roastery__step-subtitle {
@@ -406,6 +446,7 @@
   letter-spacing: 1px;
   color: var(--color-olive-bright);
   margin-bottom: 14px;
+  transform: translateZ(10px);
 }
 
 .roastery__step-desc {
@@ -414,6 +455,7 @@
   line-height: 1.6;
   color: var(--color-text-secondary);
   margin: 0;
+  transform: translateZ(5px);
 }
 
 .roastery__step-glow {
@@ -431,13 +473,67 @@
   opacity: 1;
 }
 
+/* Scroll Animations */
+.reveal, .reveal-scale {
+  opacity: 0;
+  visibility: hidden;
+  will-change: transform, opacity;
+}
+
+.reveal.visible {
+  opacity: 1;
+  visibility: visible;
+  animation: roasteryReveal 0.8s var(--ease-out-expo) forwards;
+}
+
+.reveal-scale.visible {
+  opacity: 1;
+  visibility: visible;
+  animation: roasteryRevealScale 0.8s var(--ease-out-expo) forwards;
+}
+
+@keyframes roasteryReveal {
+  0% { opacity: 0; transform: translateY(40px) translateZ(-50px) rotateX(-5deg); }
+  100% { opacity: 1; transform: translateY(0) translateZ(0) rotateX(0); }
+}
+
+@keyframes roasteryRevealScale {
+  0% { opacity: 0; transform: scale(0.95) translateY(20px); }
+  100% { opacity: 1; transform: scale(1) translateY(0); }
+}
+
+/* Light Mode Overrides */
+[data-theme='light'] .roastery {
+  background-color: var(--color-bg-secondary);
+}
+[data-theme='light'] .roastery__card {
+  background: var(--color-glass-bg);
+  border-color: var(--color-glass-border);
+  box-shadow: 0 15px 35px var(--color-shadow);
+}
+[data-theme='light'] .roastery__specs {
+  background: var(--color-bg-elevated);
+}
+[data-theme='light'] .roastery__step-card {
+  background: var(--color-glass-bg);
+  border-color: var(--color-glass-border);
+}
+[data-theme='light'] .roastery__step-card:hover {
+  background: var(--color-glass-bg-hover);
+}
+[data-theme='light'] .roastery__tab {
+  background: var(--color-glass-bg);
+}
+[data-theme='light'] .roastery__tab--active {
+  background: var(--color-glass-bg-hover);
+}
+
 /* Responsive */
 @media (max-width: 1024px) {
   .roastery__card-grid {
     grid-template-columns: 1fr;
     gap: 40px;
   }
-
   .roastery__steps-grid {
     grid-template-columns: repeat(2, 1fr);
   }
@@ -447,34 +543,27 @@
   .roastery {
     padding: 80px 0;
   }
-
   .roastery__header {
     margin-bottom: 48px;
     gap: 14px;
   }
-
   .roastery__tabs {
     gap: 10px;
   }
-
   .roastery__tab {
     padding: 11px 18px;
     font-size: 0.8rem;
   }
-
   .roastery__card {
     padding: 28px;
     margin-bottom: 72px;
   }
-
   .roastery__origin-title {
     font-size: 1.95rem;
   }
-
   .roastery__specs {
     padding: 24px;
   }
-
   .roastery__steps-grid {
     grid-template-columns: 1fr;
   }
@@ -484,54 +573,63 @@
   .roastery {
     padding: 68px 0;
   }
-
   .roastery__title {
     font-size: clamp(2rem, 10.5vw, 2.6rem);
   }
-
   .roastery__subtitle {
     font-size: 0.95rem;
   }
-
   .roastery__tabs {
     display: grid;
     grid-template-columns: 1fr;
     margin-bottom: 24px;
   }
-
   .roastery__tab {
     justify-content: center;
     width: 100%;
   }
-
   .roastery__card {
     padding: 18px;
   }
-
   .roastery__origin-title {
     font-size: 1.6rem;
   }
-
   .roastery__quote {
     font-size: 1rem;
     padding-left: 14px;
   }
-
   .roastery__chip {
     font-size: 0.76rem;
     padding: 5px 12px;
   }
-
   .roastery__specs {
     padding: 18px;
     gap: 14px;
   }
-
   .roastery__spec-value {
     font-size: 0.98rem;
   }
-
   .roastery__step-card {
     padding: 24px 18px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .roastery__bg-glow,
+  .reveal, .reveal-scale {
+    animation: none;
+    transition: none;
+  }
+  
+  .reveal, .reveal-scale {
+    opacity: 1;
+    visibility: visible;
+    transform: none;
+  }
+  
+  .roastery__card:hover,
+  .roastery__tab:hover,
+  .roastery__step-card:hover {
+    transform: none;
   }
 }

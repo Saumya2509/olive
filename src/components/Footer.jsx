@@ -13,10 +13,12 @@ const Footer = () => {
           </p>
           <div className="footer__cta-actions">
             <a href="tel:+1234567890" className="footer__cta-btn footer__cta-btn--primary">
-              Call to Reserve
+              <span className="btn-face front">Call to Reserve</span>
+              <span className="btn-face back">Call to Reserve</span>
             </a>
             <a href="mailto:hello@oliveandbrew.com" className="footer__cta-btn footer__cta-btn--secondary">
-              Send Email
+              <span className="btn-face front">Send Email</span>
+              <span className="btn-face back">Send Email</span>
             </a>
           </div>
         </div>
@@ -36,10 +38,22 @@ const Footer = () => {
               an invitation to slow down and savor.
             </p>
             <div className="footer__social">
-              <a href="#" className="footer__social-link" aria-label="Instagram">IG</a>
-              <a href="#" className="footer__social-link" aria-label="Facebook">FB</a>
-              <a href="#" className="footer__social-link" aria-label="Twitter">TW</a>
-              <a href="#" className="footer__social-link" aria-label="TikTok">TK</a>
+              <a href="#" className="footer__social-link" aria-label="Instagram">
+                <span className="social-front">IG</span>
+                <span className="social-back">IG</span>
+              </a>
+              <a href="#" className="footer__social-link" aria-label="Facebook">
+                <span className="social-front">FB</span>
+                <span className="social-back">FB</span>
+              </a>
+              <a href="#" className="footer__social-link" aria-label="Twitter">
+                <span className="social-front">TW</span>
+                <span className="social-back">TW</span>
+              </a>
+              <a href="#" className="footer__social-link" aria-label="TikTok">
+                <span className="social-front">TK</span>
+                <span className="social-back">TK</span>
+              </a>
             </div>
           </div>
 

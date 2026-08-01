@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import './Menu.css';
 import signatureCoffee from '../assets/images/signature-coffee.jpg';
 import pastries from '../assets/images/pastries.jpg';
@@ -47,12 +47,33 @@ const Menu = () => {
   const [activeCategory, setActiveCategory] = useState('coffee');
   const active = menuCategories.find((c) => c.id === activeCategory);
 
+  useEffect(() => {
+    const observerCallback = (entries, observer) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+          observer.unobserve(entry.target);
+        }
+      });
+    };
+
+    const observer = new IntersectionObserver(observerCallback, {
+      threshold: 0.15,
+      rootMargin: '0px 0px -50px 0px'
+    });
+
+    const elements = document.querySelectorAll('.menu .reveal, .menu .reveal-scale');
+    elements.forEach(el => observer.observe(el));
+
+    return () => observer.disconnect();
+  }, []);
+
   return (
     <section id="menu" className="menu">
       <div className="menu__bg-accent"></div>
       <div className="menu__bg-mesh"></div>
       <div className="section-container">
-        <div className="menu__header">
+        <div className="menu__header reveal-scale">
           <span className="menu__label">Curated Selection</span>
           <h2 className="menu__title">Our Menu</h2>
           <p className="menu__subtitle">
@@ -61,7 +82,7 @@ const Menu = () => {
           </p>
         </div>
 
-        <div className="menu__tabs">
+        <div className="menu__tabs reveal">
           {menuCategories.map((cat) => (
             <button
               key={cat.id}
@@ -74,39 +95,40 @@ const Menu = () => {
           ))}
         </div>
 
-        <div className="menu__content">
-          <div className="menu__image-wrapper">
-            <div className="menu__image-frame glass">
-              <img src={active.image} alt={active.name} className="menu__image" />
-              <div className="menu__image-overlay">
-                <span className="menu__image-label">{active.name}</span>
-              </div>
-              {/* Decorative corner accents */}
-              <div className="menu__image-corner menu__image-corner--tl"></div>
-              <div className="menu__image-corner menu__image-corner--br"></div>
-            </div>
-          </div>
-
-          <div className="menu__items">
-            {active.items.map((item, index) => (
-              <div
-                key={item.name}
-                className="menu__item glass"
-                style={{ animationDelay: `${index * 0.1}s` }}
-              >
-                <div className="menu__item-accent"></div>
-                <div className="menu__item-header">
-                  <div className="menu__item-info">
-                    <h3 className="menu__item-name">
-                      {item.name}
-                      {item.tag && <span className="menu__item-tag">{item.tag}</span>}
-                    </h3>
-                    <p className="menu__item-desc">{item.desc}</p>
-                  </div>
-                  <span className="menu__item-price">{item.price}</span>
+        <div className="menu__perspective-container reveal">
+          <div className="menu__content">
+            <div className="menu__image-wrapper">
+              <div className="menu__image-frame glass">
+                <img src={active.image} alt={active.name} className="menu__image" />
+                <div className="menu__image-overlay">
+                  <span className="menu__image-label">{active.name}</span>
                 </div>
+                <div className="menu__image-corner menu__image-corner--tl"></div>
+                <div className="menu__image-corner menu__image-corner--br"></div>
               </div>
-            ))}
+            </div>
+
+            <div className="menu__items">
+              {active.items.map((item, index) => (
+                <div
+                  key={item.name}
+                  className="menu__item glass"
+                  style={{ animationDelay: `${index * 0.1}s` }}
+                >
+                  <div className="menu__item-accent"></div>
+                  <div className="menu__item-header">
+                    <div className="menu__item-info">
+                      <h3 className="menu__item-name">
+                        {item.name}
+                        {item.tag && <span className="menu__item-tag">{item.tag}</span>}
+                      </h3>
+                      <p className="menu__item-desc">{item.desc}</p>
+                    </div>
+                    <span className="menu__item-price">{item.price}</span>
+                  </div>
+                </div>
+              ))}
+            </div>
           </div>
         </div>
       </div>
