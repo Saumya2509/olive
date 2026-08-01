@@ -1,0 +1,458 @@
+/* ==========================================================================
+   ROASTERY STORY - HEAVY PREMIUM CSS
+   ========================================================================== */
+
+.roastery {
+  position: relative;
+  padding: 120px 0;
+  background-color: var(--color-bg-secondary);
+  color: var(--color-text-primary);
+  overflow: hidden;
+  z-index: 1;
+}
+
+/* Background Effects */
+.roastery__bg-glow {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 900px;
+  height: 900px;
+  transform: translate(-50%, -50%);
+  background: radial-gradient(
+    circle,
+    rgba(139, 154, 70, 0.08) 0%,
+    rgba(201, 169, 110, 0.04) 40%,
+    transparent 70%
+  );
+  filter: blur(60px);
+  pointer-events: none;
+  z-index: -1;
+  animation: breathe 12s ease-in-out infinite alternate;
+}
+
+.roastery__bg-particles {
+  position: absolute;
+  inset: 0;
+  background-image: 
+    radial-gradient(1px 1px at 25px 35px, rgba(201, 169, 110, 0.25), transparent),
+    radial-gradient(1.5px 1.5px at 150px 220px, rgba(139, 154, 70, 0.3), transparent),
+    radial-gradient(1px 1px at 300px 80px, rgba(255, 255, 255, 0.15), transparent);
+  background-size: 350px 350px;
+  pointer-events: none;
+  z-index: -1;
+  opacity: 0.7;
+}
+
+/* Header */
+.roastery__header {
+  text-align: center;
+  max-width: 750px;
+  margin: 0 auto 70px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 18px;
+}
+
+.roastery__label {
+  display: inline-flex;
+  align-items: center;
+  padding: 8px 22px;
+  border-radius: var(--radius-full);
+  font-family: var(--font-accent);
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 2.5px;
+  text-transform: uppercase;
+  color: var(--color-gold-light);
+  background: rgba(201, 169, 110, 0.1);
+  border: 1px solid rgba(201, 169, 110, 0.25);
+  box-shadow: 0 0 20px rgba(201, 169, 110, 0.12);
+}
+
+.roastery__title {
+  font-family: var(--font-display);
+  font-size: clamp(2.8rem, 5vw, 4.2rem);
+  font-weight: 400;
+  line-height: 1.15;
+  margin: 0;
+  background: linear-gradient(
+    135deg,
+    var(--color-cream),
+    var(--color-gold-light),
+    var(--color-cream-dark)
+  );
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  text-shadow: 0 4px 30px rgba(0, 0, 0, 0.5);
+}
+
+.roastery__subtitle {
+  font-family: var(--font-body);
+  font-size: 1.1rem;
+  line-height: 1.7;
+  color: var(--color-text-secondary);
+  margin: 0;
+}
+
+/* Tabs */
+.roastery__tabs {
+  display: flex;
+  justify-content: center;
+  gap: 16px;
+  margin-bottom: 36px;
+  flex-wrap: wrap;
+}
+
+.roastery__tab {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 14px 28px;
+  border-radius: var(--radius-full);
+  background: rgba(255, 255, 255, 0.025);
+  border: 1px solid rgba(255, 255, 255, 0.07);
+  color: var(--color-text-secondary);
+  font-family: var(--font-accent);
+  font-size: 0.9rem;
+  font-weight: 500;
+  letter-spacing: 0.5px;
+  cursor: pointer;
+  transition: all var(--transition-medium);
+  backdrop-filter: blur(12px);
+}
+
+.roastery__tab-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.2);
+  transition: all var(--transition-fast);
+}
+
+.roastery__tab:hover {
+  background: rgba(255, 255, 255, 0.06);
+  border-color: rgba(201, 169, 110, 0.3);
+  color: var(--color-cream);
+  transform: translateY(-2px);
+}
+
+.roastery__tab--active {
+  background: linear-gradient(135deg, rgba(139, 154, 70, 0.2), rgba(201, 169, 110, 0.15));
+  border-color: rgba(201, 169, 110, 0.5);
+  color: var(--color-gold-light);
+  box-shadow: 
+    0 8px 24px -6px rgba(0, 0, 0, 0.4),
+    0 0 15px rgba(201, 169, 110, 0.2);
+}
+
+.roastery__tab--active .roastery__tab-dot {
+  background: var(--color-gold);
+  box-shadow: 0 0 8px var(--color-gold);
+}
+
+/* Card Showcase */
+.roastery__card {
+  border-radius: var(--radius-xl);
+  padding: 48px;
+  background: rgba(15, 15, 15, 0.65);
+  backdrop-filter: blur(30px) saturate(160%);
+  -webkit-backdrop-filter: blur(30px) saturate(160%);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  box-shadow: 
+    0 24px 48px -12px rgba(0, 0, 0, 0.6),
+    inset 0 1px 0 0 rgba(255, 255, 255, 0.1);
+  transition: all var(--transition-medium);
+  margin-bottom: 100px;
+}
+
+.roastery__card-grid {
+  display: grid;
+  grid-template-columns: 1.2fr 0.8fr;
+  gap: 60px;
+  align-items: center;
+}
+
+/* Left Info Column */
+.roastery__info {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.roastery__origin-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  color: var(--color-olive-bright);
+  font-family: var(--font-accent);
+  font-size: 0.85rem;
+  font-weight: 600;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+}
+
+.roastery__origin-title {
+  font-family: var(--font-display);
+  font-size: 2.4rem;
+  font-weight: 400;
+  color: var(--color-cream);
+  margin: 0;
+  line-height: 1.2;
+}
+
+.roastery__origin-desc {
+  font-family: var(--font-body);
+  font-size: 1.05rem;
+  line-height: 1.7;
+  color: var(--color-text-secondary);
+  margin: 0;
+}
+
+.roastery__quote {
+  font-family: var(--font-display);
+  font-size: 1.15rem;
+  font-style: italic;
+  line-height: 1.6;
+  color: var(--color-gold-light);
+  border-left: 3px solid var(--color-olive);
+  padding-left: 20px;
+  margin: 10px 0 15px;
+  opacity: 0.9;
+}
+
+/* Flavor Notes */
+.roastery__notes {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-top: 10px;
+}
+
+.roastery__notes-label {
+  font-family: var(--font-accent);
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  color: var(--color-text-muted);
+}
+
+.roastery__notes-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.roastery__chip {
+  padding: 6px 16px;
+  border-radius: var(--radius-full);
+  background: rgba(139, 154, 70, 0.12);
+  border: 1px solid rgba(139, 154, 70, 0.25);
+  color: var(--color-cream);
+  font-family: var(--font-accent);
+  font-size: 0.85rem;
+  font-weight: 500;
+  transition: all var(--transition-fast);
+}
+
+.roastery__chip:hover {
+  background: rgba(201, 169, 110, 0.2);
+  border-color: rgba(201, 169, 110, 0.4);
+  transform: translateY(-2px);
+}
+
+/* Specs & Taste Meters */
+.roastery__specs {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  background: rgba(0, 0, 0, 0.3);
+  padding: 32px;
+  border-radius: var(--radius-lg);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.roastery__spec-badge {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-bottom: 14px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.roastery__spec-label {
+  font-family: var(--font-accent);
+  font-size: 0.85rem;
+  color: var(--color-text-muted);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.roastery__spec-value {
+  font-family: var(--font-display);
+  font-size: 1.1rem;
+  color: var(--color-gold-bright);
+}
+
+/* Taste Meters */
+.roastery__meters {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  margin-top: 10px;
+}
+
+.roastery__meters-heading {
+  font-family: var(--font-accent);
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  color: var(--color-olive-bright);
+  margin: 0 0 6px;
+}
+
+.roastery__meter-row {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.roastery__meter-info {
+  display: flex;
+  justify-content: space-between;
+  font-family: var(--font-accent);
+  font-size: 0.8rem;
+}
+
+.roastery__meter-name {
+  text-transform: capitalize;
+  color: var(--color-text-secondary);
+}
+
+.roastery__meter-num {
+  color: var(--color-gold);
+  font-weight: 600;
+}
+
+.roastery__meter-track {
+  height: 6px;
+  border-radius: var(--radius-full);
+  background: rgba(255, 255, 255, 0.08);
+  overflow: hidden;
+}
+
+.roastery__meter-fill {
+  height: 100%;
+  border-radius: var(--radius-full);
+  background: linear-gradient(90deg, var(--color-olive), var(--color-gold));
+  transition: width 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+  box-shadow: 0 0 10px rgba(201, 169, 110, 0.5);
+}
+
+/* Process Steps Grid */
+.roastery__steps-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 24px;
+}
+
+.roastery__step-card {
+  position: relative;
+  padding: 32px 24px;
+  border-radius: var(--radius-lg);
+  background: var(--color-glass-bg);
+  backdrop-filter: blur(20px);
+  border: 1px solid var(--color-glass-border);
+  transition: all var(--transition-medium);
+  overflow: hidden;
+}
+
+.roastery__step-card:hover {
+  transform: translateY(-8px);
+  background: var(--color-glass-bg-hover);
+  border-color: rgba(201, 169, 110, 0.3);
+  box-shadow: 
+    0 16px 36px -10px rgba(0, 0, 0, 0.5),
+    0 0 20px rgba(139, 154, 70, 0.15);
+}
+
+.roastery__step-number {
+  font-family: var(--font-display);
+  font-size: 2.8rem;
+  font-weight: 700;
+  color: var(--color-text-dim);
+  line-height: 1;
+  margin-bottom: 16px;
+  transition: color var(--transition-medium);
+}
+
+.roastery__step-card:hover .roastery__step-number {
+  color: rgba(201, 169, 110, 0.3);
+}
+
+.roastery__step-title {
+  font-family: var(--font-display);
+  font-size: 1.35rem;
+  color: var(--color-cream);
+  margin: 0 0 6px;
+}
+
+.roastery__step-subtitle {
+  font-family: var(--font-accent);
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  color: var(--color-olive-bright);
+  margin-bottom: 14px;
+}
+
+.roastery__step-desc {
+  font-family: var(--font-body);
+  font-size: 0.9rem;
+  line-height: 1.6;
+  color: var(--color-text-secondary);
+  margin: 0;
+}
+
+.roastery__step-glow {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, var(--color-gold), transparent);
+  opacity: 0;
+  transition: opacity var(--transition-medium);
+}
+
+.roastery__step-card:hover .roastery__step-glow {
+  opacity: 1;
+}
+
+/* Responsive */
+@media (max-width: 1024px) {
+  .roastery__card-grid {
+    grid-template-columns: 1fr;
+    gap: 40px;
+  }
+
+  .roastery__steps-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 768px) {
+  .roastery {
+    padding: 80px 0;
+  }
+
+  .roastery__card {
+    padding: 28px;
+  }
+
+  .roastery__steps-grid {
+    grid-template-columns: 1fr;
+  }
+}
