@@ -69,6 +69,15 @@ const Navbar = () => {
       <div className={`navbar__drawer ${menuOpen ? 'navbar__drawer--open' : ''}`}>
         <div className="navbar__drawer-bg"></div>
         <div className="navbar__drawer-content">
+          <button
+            className="navbar__drawer-back"
+            onClick={() => setMenuOpen(false)}
+            aria-label="Go back"
+          >
+            <span className="navbar__drawer-back-icon">←</span>
+            <span>Go Back</span>
+          </button>
+
           <a href="#menu" className="navbar__drawer-link" onClick={() => setMenuOpen(false)}>
             <span className="navbar__drawer-link-num">01</span>
             <span className="navbar__drawer-link-label">Our Menu</span>

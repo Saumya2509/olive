@@ -448,11 +448,90 @@
     padding: 80px 0;
   }
 
+  .roastery__header {
+    margin-bottom: 48px;
+    gap: 14px;
+  }
+
+  .roastery__tabs {
+    gap: 10px;
+  }
+
+  .roastery__tab {
+    padding: 11px 18px;
+    font-size: 0.8rem;
+  }
+
   .roastery__card {
     padding: 28px;
+    margin-bottom: 72px;
+  }
+
+  .roastery__origin-title {
+    font-size: 1.95rem;
+  }
+
+  .roastery__specs {
+    padding: 24px;
   }
 
   .roastery__steps-grid {
     grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 520px) {
+  .roastery {
+    padding: 68px 0;
+  }
+
+  .roastery__title {
+    font-size: clamp(2rem, 10.5vw, 2.6rem);
+  }
+
+  .roastery__subtitle {
+    font-size: 0.95rem;
+  }
+
+  .roastery__tabs {
+    display: grid;
+    grid-template-columns: 1fr;
+    margin-bottom: 24px;
+  }
+
+  .roastery__tab {
+    justify-content: center;
+    width: 100%;
+  }
+
+  .roastery__card {
+    padding: 18px;
+  }
+
+  .roastery__origin-title {
+    font-size: 1.6rem;
+  }
+
+  .roastery__quote {
+    font-size: 1rem;
+    padding-left: 14px;
+  }
+
+  .roastery__chip {
+    font-size: 0.76rem;
+    padding: 5px 12px;
+  }
+
+  .roastery__specs {
+    padding: 18px;
+    gap: 14px;
+  }
+
+  .roastery__spec-value {
+    font-size: 0.98rem;
+  }
+
+  .roastery__step-card {
+    padding: 24px 18px;
   }
 }

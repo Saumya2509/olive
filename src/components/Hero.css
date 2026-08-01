@@ -1065,6 +1065,19 @@
     padding-bottom: 6rem;
   }
 
+  .hero__content {
+    max-width: 100%;
+  }
+
+  .hero__badge {
+    margin-bottom: 1.5rem;
+  }
+
+  .hero__description {
+    margin-bottom: 2.2rem;
+    line-height: 1.8;
+  }
+
   .hero__actions {
     flex-direction: column;
     align-items: flex-start;
@@ -1091,6 +1104,11 @@
     display: none;
   }
 
+  .hero__rays,
+  .hero__particles {
+    display: none;
+  }
+
   .hero__floating-badge {
     top: auto;
     bottom: -0.5rem;
@@ -1099,6 +1117,63 @@
 
   .hero__marquee {
     padding: 0.85rem 0;
+  }
+}
+
+@media (max-width: 480px) {
+  .hero__layout {
+    padding-top: 6.8rem;
+    padding-bottom: 5rem;
+    gap: 2rem;
+  }
+
+  .hero__badge {
+    padding: 0.5rem 0.85rem;
+  }
+
+  .hero__badge-text {
+    font-size: 0.58rem;
+    letter-spacing: 0.16em;
+  }
+
+  .hero__title-word {
+    font-size: clamp(2rem, 10.5vw, 3rem);
+  }
+
+  .hero__title-accent {
+    font-size: clamp(2.35rem, 12vw, 3.5rem);
+  }
+
+  .hero__actions {
+    width: 100%;
+    gap: 1rem;
+  }
+
+  .hero__btn--primary {
+    width: 100%;
+    justify-content: center;
+    padding: 1rem 1.2rem;
+  }
+
+  .hero__card-inner {
+    padding: 1.3rem;
+  }
+
+  .hero__card-item-name {
+    font-size: 0.88rem;
+  }
+
+  .hero__floating-badge {
+    display: none;
+  }
+
+  .hero__marquee-item {
+    font-size: 0.58rem;
+    letter-spacing: 0.24em;
+  }
+
+  .hero__bottom-fade {
+    height: 160px;
   }
 }
 
